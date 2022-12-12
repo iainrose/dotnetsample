@@ -152,6 +152,27 @@ public class LoginController : ControllerBase
         return new OkResult();
     }
     
+    
+    // not flagged
+    [HttpPost]
+    public async Task<IActionResult> LoginStringWithWrap(string name, string password)
+    {
+        var parameter = new string(name);
+        await _indirectCaller.ManipulateStringAndCall(parameter);
+        
+        return new OkResult();
+    }
+    
+    // not flagged
+    [HttpPost]
+    public async Task<IActionResult> LoginStringVariableChange(string name, string password)
+    {
+        var parameter = name;
+        await _indirectCaller.CallDirect(parameter);
+        
+        return new OkResult();
+    }
+    
     // not flagged
     [HttpPost]
     public async Task<IActionResult> LoginStringIndirectCallWithWrap(string name, string password)
