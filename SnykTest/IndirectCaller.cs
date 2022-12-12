@@ -14,4 +14,15 @@ public class IndirectCaller
         var parameter = new string(input);
         await _provider.Process(parameter);
     }
+    
+    public async Task CallDirect(string input)
+    {
+        var parameter = input;
+        await _provider.Process(parameter);
+    }
+    
+    public async Task PassThrough(string input)
+    {
+        await _provider.Process(input);
+    }
 }

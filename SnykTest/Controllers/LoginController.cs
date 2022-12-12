@@ -154,9 +154,27 @@ public class LoginController : ControllerBase
     
     // not flagged
     [HttpPost]
-    public async Task<IActionResult> LoginStringIndirectCall(string name, string password)
+    public async Task<IActionResult> LoginStringIndirectCallWithWrap(string name, string password)
     {
         await _indirectCaller.ManipulateStringAndCall(name);
+        
+        return new OkResult();
+    }
+    
+    // not flagged
+    [HttpPost]
+    public async Task<IActionResult> LoginStringIndirectCall(string name, string password)
+    {
+        await _indirectCaller.CallDirect(name);
+        
+        return new OkResult();
+    }
+    
+    // not flagged
+    [HttpPost]
+    public async Task<IActionResult> LoginStringPassthroughCall(string name, string password)
+    {
+        await _indirectCaller.PassThrough(name);
         
         return new OkResult();
     }
